@@ -131,13 +131,9 @@ prompt_firebase() {
     fi
 }
 
-newline() {
-    echo "\n"
-}
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#969696'
 
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 PROMPT='⏰ %F{#fc68ee}%*%f 📁 %F{#5dd5d9}%~%f%F{#ffb938}$(prompt_firebase) 🔀 %F{red}${vcs_info_msg_0_}'
-PROMPT="$NEWLINE$PROMPT$NEWLINE%F{#fc68ee}> %F{#02f517}"
+PROMPT="$NEWLINE$PROMPT$NEWLINE%F{#fc68ee}> "
