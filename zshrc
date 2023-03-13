@@ -123,11 +123,11 @@ precmd() { vcs_info }
 prompt_firebase() {
     local fb_proj=$(grep \"$(pwd)\" ~/.config/configstore/firebase-tools.json | cut -d" " -f2)
     if [[ -n $fb_proj ]]; then
-        echo " [$fb_proj]" | tr -d ',"'
+        echo " 🔥 $fb_proj" | tr -d ',"'
     fi
     local fb_proj=$(grep \"$(dirname $(pwd))\" ~/.config/configstore/firebase-tools.json | cut -d" " -f2)
     if [[ -n $fb_proj ]]; then
-        echo " [$fb_proj]" | tr -d ',"'
+        echo " 🔥 $fb_proj" | tr -d ',"'
     fi
 }
 
@@ -139,5 +139,5 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#969696'
 
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
-PROMPT='%F{#fc68ee}%*%f %F{#5dd5d9}%~%f%F{#ffb938}$(prompt_firebase) %F{red}${vcs_info_msg_0_}'
+PROMPT='⏰ %F{#fc68ee}%*%f 📁 %F{#5dd5d9}%~%f%F{#ffb938}$(prompt_firebase) 🔀 %F{red}${vcs_info_msg_0_}'
 PROMPT="$NEWLINE$PROMPT$NEWLINE%F{#fc68ee}> %F{#02f517}"
