@@ -119,6 +119,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b'
 
 prompt_firebase() {
     local fb_proj=$(grep \"$(pwd)\" ~/.config/configstore/firebase-tools.json | cut -d" " -f2)
