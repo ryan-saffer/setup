@@ -8,7 +8,7 @@ export ZSH="/Users/rsaffer/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="pi"
+ZSH_THEME="avit"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,18 +100,28 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# PERSONAL STUFF
-
+# Add NPM npm packags
 export PATH="$HOME/.npm-packages/bin:$PATH"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-cat ~/Pictures/zelda.txt
+export EDITOR=nano
+export VISUAL="$EDITOR"
+
+autoload -U select-word-style
+select-word-style bash
+
+# uncomment next line to printout a text file
+# cat ~/Pictures/zelda.txt
 
 # Fizz Booking Alias
 alias bf="(cd /Users/rsaffer/workspace/react-booking-system/firebase/functions/fizz-kidz && npm run build) && (cd /Users/rsaffer/workspace/react-booking-system/firebase && npm install)"
+
+# WIP alias
+alias wip='git add . && git commit -m "feat(wip): wip"'
+alias unwip='git reset --soft HEAD~1'
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -119,7 +129,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' 🔴'
+zstyle ':vcs_info:*' stagedstr ' 🟢'
+zstyle ':vcs_info:git:*' formats '%b%u%c'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 
 prompt_firebase() {
     local fb_proj=$(grep \"$(pwd)\" ~/.config/configstore/firebase-tools.json | cut -d" " -f2)
